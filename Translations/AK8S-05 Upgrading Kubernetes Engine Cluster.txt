@@ -1,0 +1,66 @@
+
+LAB NAME - AK8S-05 UPGRADING KUBERNETES ENGINE CLUSTERS
+
+
+OBEJECTIVE:
+
+In this lab, the following task will be perfomed:
+
+Use the GCP Console to upgrade your GKE cluster.
+
+
+
+
+__________________________________________________________________________________
+TASK 1- DEPLOY A GKE CLUSTER
+----------------------------
+
+
+1. Set the environment variable for the zone and cluster name
+
+	export my_zone=us-central1-c
+	
+	export my_cluster=cluster-1
+
+
+
+2. Create a kubernetes cluster
+
+	gcloud container clusters create $my_cluster --num-nodes 3 --zone $my_zone --enable-ip-alias
+
+
+
+3. To view created clusters
+
+	gcloud container clusters list
+
+
+
+______________________________________________________________________________________________
+TASK 2- UPGRADE YOUR GKE CLUSTER
+---------------------------------
+
+1. Upgrade the kubernetes cluster (master version) to the most recent build.
+
+	gcloud container clusters upgrade cluster-1 --master --cluster-version="1.16.13-gke.400"
+
+
+2. To view node pool details
+
+	gcloud container node-pools describe default-pool --cluster=cluster-1
+
+
+
+UPGRADE THE NODE POOL IN YOUR CLUSTER
+
+
+2. Upgrade the nodes of your cluster to the same version as the master.  
+
+	gcloud container clusters upgrade cluster-name --node-pool=default-pool --cluster-version="1.16.13-gke.400" 
+
+
+
+
+
+
+
